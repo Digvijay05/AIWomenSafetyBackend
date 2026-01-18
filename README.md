@@ -135,6 +135,22 @@ This project strictly requires Python 3.11.x:
 - All dependencies are pinned for Python 3.11 compatibility
 - Virtual environment creation enforces Python 3.11 usage
 
+## Frontend Integration
+
+For Flutter developers integrating with this backend:
+
+- **Frontend Integration Guide**: See `../FRONTEND_INTEGRATION_GUIDE.md` for comprehensive integration documentation
+- All APIs are JSON-only (no form-data or multipart)
+- Backend makes autonomous safety decisions based on telemetry
+- Frontend sends data and receives decisions/actions
+- JWT authentication required for all protected endpoints
+
+Quick links:
+- Authentication: JSON-only register/login endpoints
+- Journey lifecycle: Start → Telemetry → End
+- Risk analysis: Backend evaluates and returns risk assessments
+- Decision engine: Backend automatically escalates alerts when needed
+
 ## Extending the API
 
 To add new features:
