@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hackathon-backend
+    ports:
+      - "8000:8000"
+    environment:
+      # MongoDB connection (adjust if needed)
+      - MONGODB_URL=${MONGODB_URL:-mongodb://localhost:27017}
+      - DATABASE_NAME=${DATABASE_NAME:-hackathon_db}
+      
+      # JWT configuration
+      - SECRET_KEY=${SECRET_KEY}
+      - ALGORITHM=${ALGORITHM:-HS256}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
+      
+      # App environment
+      - APP_ENV=${APP_ENV:-production}
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - hackathon-network
+
+networks:
+  hackathon-network:
+    driver: bridge
