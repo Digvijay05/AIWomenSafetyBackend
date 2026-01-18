@@ -139,7 +139,8 @@ This project strictly requires Python 3.11.x:
 
 For Flutter developers integrating with this backend:
 
-- **Frontend Integration Guide**: See `../FRONTEND_INTEGRATION_GUIDE.md` for comprehensive integration documentation
+- **Frontend Integration Guide**: See [Frontend Integration Guide](FRONTEND_INTEGRATION_GUIDE.md)
+ for comprehensive integration documentation
 - All APIs are JSON-only (no form-data or multipart)
 - Backend makes autonomous safety decisions based on telemetry
 - Frontend sends data and receives decisions/actions
